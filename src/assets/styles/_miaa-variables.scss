@@ -1,0 +1,137 @@
+// CUSTOM MIAA VARIABLES (NON-BOOTSTRAP) ==========
+$facebook-color: #3B5998;
+$googleplus-color: #4285F4;
+$linkedin-color: #007BB6;
+$divider-color: #E4E4E4;
+
+$theme-colors: ( "primary": #f97622, "secondary":#A2A72A, "success": #4D9A3D, "danger": #d01944, "warning": #ffa400, "light-green": #CBD136, "input-focus": #CBD136);
+$icon-check: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="37" height="37" viewBox="0 0 37 37"><defs><linearGradient id="a" x1="28.576%" x2="91.163%" y1="50%" y2="50%"><stop offset="0%" stop-color="#FFF" stop-opacity="0"/><stop offset="100%" stop-color="#D0DD56"/></linearGradient></defs><g fill="none" fill-rule="evenodd"><path fill="#D0DD56" d="M1.298 18.713c0 9.376 7.717 17.004 17.202 17.004 9.485 0 17.202-7.628 17.202-17.004H37C37 28.813 28.717 37 18.5 37S0 28.812 0 18.713h1.298z"/><path fill="url(#a)" d="M18.5 0C8.283 0 0 8.378 0 18.713h1.299c0-9.595 7.716-17.4 17.201-17.4s17.202 7.805 17.202 17.4H37C37 8.378 28.717 0 18.5 0z" transform="matrix(-1 0 0 1 37 0)"/><path fill="#D0DD56" d="M35.724 18.5a.638.638 0 1 0 1.276 0 .638.638 0 0 0-1.276 0M18.076 20.443L33.045 5.44l2.002 2.003-16.97 16.97-7.875-7.874 1.968-2.002z"/></g></svg>');
+// styleguide *****
+$text-color-btn: #332c00;
+$text-color-placeholder: #999999;
+$text-color-primary: #666666;
+$text-color-info: #363d42;
+$text-color-white: #ffffff;
+$password-eye-color: #ababab;
+$primary-text-muted: #a7b0b5;
+$info-color-box: #D3D7DA;
+$input-border-color: #d6d6d6;
+// **************************
+$link-color: map-get($theme-colors,
+"light-green");
+$toggle-wrapper-color: map-get($theme-colors,
+"light-green");
+$radio-color-text-selected: #FFF;
+$radio-color-text: $text-color-placeholder;
+
+// MIAA VARIABLE OVERRIDES (BOOTSTRAP) ============
+// COLORS =========================================
+$gray-dark: #454545 !default;
+$white: #fff !default;
+$body-color:#636c72 !default;
+
+//font-colors
+$font-primary-color: #444444 !default;
+$font-secondary-color: $white !default;
+$font-placeholder-color: #58585B !default;
+
+//header
+$headings-color: #161515 !default;
+$headings-registration-color: #F6F6F6 !default;
+$heading-registration-border: #C1C1C1 !default;
+
+// BUTTONS ========================================
+$btn-border-radius: 0 !default;
+$input-btn-padding-x: 1rem !default;
+$input-btn-padding-y: 0.75rem !default;
+
+// INPUT ==========================================
+$input-color: $text-color-primary;
+$input-placeholder-color: $text-color-placeholder;
+
+$input-focus-border-color: $text-color-placeholder;
+$input-focus-box-shadow: none;
+
+$input-border-radius: 0 !default;
+$input-line-height: 1.6 !default;
+$input-background-color: $white !default;
+//focus
+$input-border-focus: #4990E2 !default;
+$input-box-shadow-focus: 0 0 4px 0 $input-border-focus !default;
+
+// FONTS ==========================================
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
+$roboto: "Roboto", sans-serif;
+$helvetica-nueue: "Helvetica Nueue", sans-serif;
+$font-family-base: $roboto;
+
+// $font-size-base: 15px !default;
+// assumes 1rem = 16px so 0.875 = 14px
+$font-size-base: 0.875rem;
+$input-padding-x: 0.75rem;
+// Headings
+$headings-font-weight: 700;
+$h1-font-size: 23px;
+$font-size-h4: 17px !default;
+//font-weight
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-medium: 600 !default;
+$font-weight-bold: 700 !default;
+$font-weight-base: $font-weight-normal !default;
+$headings-font-weight: $font-weight-bold !default;
+$btn-font-weight: $font-weight-medium !default;
+// MODALS ===========================================
+//Bootstrap 4 modal sizes
+
+//width of modals with explicit modal-<size> class
+$modal-sizes: (
+    "sm": 300px,
+    "md": 500px,
+    "lg": 800px
+) !default;
+
+$modal-sm: 300px;
+$modal-md: 700px;
+$modal-lg: 700px;
+
+$max-height-md: 100%;
+//bootstrap 4 modal breakpoints
+$grid-breakpoints: ( xs: 0,
+sm: 576px,
+md: 700px,
+lg: 1050px,
+xl: 1200px) !default;
+
+// screen size
+$screen-width-lg: 100%;
+$screen-width-md: 700px;
+$screen-width-sm: 300px;
+
+// inner-content size
+$inner-content-max-width-lg: 800px;
+$inner-content-max-width-md: 500px;
+$inner-content-max-width-sm: 500px;
+
+// primary text color
+$body-color: $text-color-primary;
+$headings-color: $text-color-primary;
+
+$primary-placeholder: #AAAAAA ;
+
+$link-decoration: underline;
+
+
+$text-muted: $primary-text-muted;
+
+//btn text
+$yiq-text-dark: $text-color-btn;
+
+
+// fonts
+
+
+// whitespace above titles on e.g. forgotPassword
+$title-margin-top: 116px;
+
+$screen-height: 700px;

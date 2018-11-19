@@ -1,0 +1,54 @@
+{
+  "name": "miaaguardui",
+  "version": "1.0.0",
+  "description": "miaa Guard basic UI",
+  "main": "gulp.js",
+  "repository": {
+    "type": "git",
+    "url": "https://wardduchamps@bitbucket.org/MIAA/friesland_widget.git"
+  },
+  "scripts": {
+    "test": "mocha -r ts-node/register src/app/**/*.spec.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/MIAA/friesland_widget#readme",
+  "devDependencies": {
+    "@types/chai": "^4.1.4",
+    "@types/fs-extra": "^5.0.4",
+    "@types/lodash": "^4.14.116",
+    "@types/mocha": "^5.2.5",
+    "@types/vue-i18n": "^7.0.0",
+    "bootstrap": "4.1",
+    "chai": "^4.1.2",
+    "del": "^2.2.0",
+    "fs": "0.0.2",
+    "fs-extra": "^7.0.0",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.0.4",
+    "gulp-minifier": "^0.1.4",
+    "gulp-postcss": "^7.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-string-replace": "^0.4.0",
+    "gulp-tslint": "^8.1.3",
+    "gulp-typescript": "^4.0.1",
+    "mocha": "^5.2.0",
+    "node-notifier": "^4.6.0",
+    "postcss-cssnext": "^3.1.0",
+    "run-sequence": "^1.2.2",
+    "systemjs-builder": "^0.16.4",
+    "systemjs-plugin-text": "0.0.9",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "typescript": "^2.2.2",
+    "vue-property-decorator": "^6.0.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.5",
+    "systemjs": "^0.20.11",
+    "vue": "^2.5.17",
+    "vue-router": "^3.0.1"
+  }
+}

@@ -1,0 +1,7 @@
+.btn {
+    padding: 8px 1rem;
+}
+
+.btn-facebook {
+    @include button-variant(#3B5998, #3B5998);
+}

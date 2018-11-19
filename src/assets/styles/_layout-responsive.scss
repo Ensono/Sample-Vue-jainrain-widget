@@ -1,0 +1,71 @@
+
+// SMALL
+@media screen and (min-width: map-get($grid-breakpoints, sm)){
+    .miaa-screen{
+        max-width: $screen-width-md;
+        max-height: $max-height-md;
+        .miaa-header{
+
+        }
+        .miaa-body{
+
+        }
+        .miaa-footer{
+
+        }
+        .miaa-inner-content{
+            width: $inner-content-max-width-sm;
+        }
+    }
+}
+
+// MEDIUM
+@media screen and (min-width: map-get($grid-breakpoints, md)){
+    .miaa-screen{
+        max-width: $screen-width-md;
+        .miaa-header{
+
+        }
+        .miaa-body{
+
+        }
+        .miaa-footer{
+
+        }
+        .miaa-inner-content{
+            width: $inner-content-max-width-md;
+        }
+    }
+}
+
+// LARGE
+@media screen and (min-width: map-get($grid-breakpoints, lg)){
+    .miaa-screen{
+        max-width: $screen-width-lg;
+        .miaa-header{
+
+        }
+        .miaa-body{
+
+        }
+        .miaa-footer{
+
+        }
+        .miaa-inner-content{
+            width: $inner-content-max-width-lg;
+        }
+    }
+}
+
+
+.modal{
+    // Add margin to top on non-mobile + make content fill height
+    @media screen and (min-width: map-get($grid-breakpoints, sm)) {
+        .miaa-screen {
+            margin: 50px auto;
+        }
+        .miaa-content{
+            min-height: auto;
+        }
+    }
+}

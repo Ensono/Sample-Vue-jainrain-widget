@@ -1,0 +1,46 @@
+// Needs to be outside .miaa wrapper for the moment because otherwise it generates a.o. .miaa html which doesn't apply any rules
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/mixins";
+@import "mixins/index";
+@import "miaa-variables";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/utilities";
+//miaa-variables need to be imported immediately after default bootstrap to prevent weird behavior caused by variables that are later changed.
+
+
+// MIAA NAMESPACE ===================================================================
+.miaa {
+    // Bootstrap (Cherry Pick)
+    @import "bootstrap/scss/reboot";
+    @import "bootstrap/scss/type";
+    @import "bootstrap/scss/grid";
+    @import "bootstrap/scss/forms";
+    @import "bootstrap/scss/buttons";
+    @import "bootstrap/scss/input-group";
+    @import "bootstrap/scss/card";
+    @import "bootstrap/scss/alert";
+    @import "bootstrap/scss/list-group";
+    @import "bootstrap/scss/close";
+    @import "bootstrap/scss/progress";
+    font-family: $font-family-base;
+    html {
+        line-height: $line-height-base !important;
+        -webkit-font-smoothing: antialiased;
+        font-family: $font-family-base;
+    }
+    body {
+        margin: 0;
+        color: $body-color;
+        font-family: $font-family-base;
+    }
+    a {
+        text-decoration: none;
+        color: map-get($theme-colors, 'primary');
+    }
+    @import "utility"; 
+    @import "layout";
+    @import "forms";
+    @import 'divider';
+    @import 'buttons';
+}

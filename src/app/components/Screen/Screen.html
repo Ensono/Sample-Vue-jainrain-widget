@@ -1,0 +1,22 @@
+<div>
+    <div class="miaa-content">
+        <div class="miaa-header">
+            <div class="miaa-inner-content">
+                <h4 class="miaa-title">{{ title }}</h4>
+            </div>
+        </div>
+        <div class="miaa-body">
+            <div class="miaa-inner-content">
+                <div class="alert alert-danger" role="alert" v-if="error">
+                    {{ error }}
+                </div>
+                <slot></slot>
+            </div>
+        </div>
+        <div class="miaa-footer" v-if="showFooter">
+            <div class="miaa-inner-content">
+                <slot name="footer"></slot>
+            </div>
+        </div>
+    </div>
+</div>

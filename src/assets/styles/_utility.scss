@@ -1,0 +1,65 @@
+.hidden {
+    display: none !important;
+}
+.required{
+    > label:first-of-type:after{
+        content: '*';
+        display:inline;
+        margin-left:5px;
+    }
+}
+.small-medium{
+    font-size: $small-font-size;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+div[class*=" miaa-conditionally-show"] {
+    display: none;
+}
+
+.close {
+    display: block;
+    font-size: 2rem;
+    font-weight: lighter;
+    line-height: 1;
+    color: $black;
+    text-shadow: 0 1px 0 $white;
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-shadow: none;
+    z-index: $zindex-modal+15;
+    &.close-flex {
+        position: initial;
+    }
+    &:hover{
+        color: lighten($black, 25%);
+    }
+}
+
+ @media screen and (min-width: map-get($grid-breakpoints, sm)) {
+    button.close {
+        right: -14px;
+        top: -17px;
+        color:$white;
+        background-color: $black;
+        border-radius: 100%;
+        min-width: 30px;
+        height: 30px;
+        position: relative;
+        margin-left: -30px;
+        &:hover{
+            color: lighten($white, 25%);
+        }
+    }
+    button.close>span{
+        line-height: 29px;
+        font-size: 19px;
+        vertical-align: top;
+        margin-left: 1px;
+    }
+}

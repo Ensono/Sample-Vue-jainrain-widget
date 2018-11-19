@@ -1,0 +1,32 @@
+<screen title="Log in" :error="error">
+    <form method="POST">
+        <form-field label="Email">
+            <input v-model="email" name="email" placeholder="Email">
+        </form-field>
+        <form-field label="Password">
+            <password>
+                <input type="password" v-model="password" name="password" placeholder="Password">
+            </password>
+        </form-field>
+        <button class="btn btn-primary btn-block mb-4" :disabled="!isFormValid">Log in</button>
+    </form>
+    <div class="justify-content-around">
+        <nav-link path="forgotPassword">
+            <a class="small-medium mr-auto">
+                Forgot password
+            </a>
+        </nav-link>
+    </div>
+    <template slot="footer">
+        <div class="row justify-content-around align-items-center">
+            <div class="col-sm-6 col-lg-4">
+                I don't have an account yet
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <nav-link path="register">
+                    <button class="btn btn-block" type="button">Register</button>
+                </nav-link>
+            </div>
+        </div>
+    </template>
+</screen>

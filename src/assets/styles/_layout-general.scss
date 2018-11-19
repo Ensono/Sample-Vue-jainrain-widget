@@ -1,0 +1,35 @@
+.miaa-screen {
+    width: 100%;
+    display: flex;
+    height: 100%;
+    .miaa-content {
+        margin: auto;
+        text-align: center;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column; // if the first child is a form-> apply flex to it and make it grow to fit height
+        &>form {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+    }
+    .miaa-header {}
+    .miaa-body {}
+    .miaa-footer {
+        margin-top: auto;
+        margin-bottom: 2rem;
+    }
+    .miaa-footer {
+        margin-top: 2rem;
+        .miaa-inner-content {
+            padding: 15px 0;
+            background-color: #f6f6e7;
+            max-width: 85%;
+        }
+    }
+    .miaa-inner-content {
+        margin: auto;
+        max-width: 50%;
+    }
+}

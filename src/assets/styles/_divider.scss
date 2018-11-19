@@ -1,0 +1,56 @@
+// Divider both horizontal as vertical. In vertical mode the message "OR" stays at the top.
+.divider {
+        display: block;
+        text-align: center;
+        overflow: hidden;
+        white-space: nowrap;
+        margin: 0 0;
+        font-size: 13px;
+    }
+    .divider>span {
+        position: relative;
+        display: inline-block;
+        // border: 1px solid $divider-color;
+        padding: 10px;
+        // border-radius: 50%;
+    }
+
+    .divider>span:before,
+    .divider>span:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 9999px;
+        height: 1px;
+        background: $divider-color;
+    }
+
+    .divider>span:before {
+        right: 100%;
+        // margin-right: 15px;
+    }
+
+    .divider>span:after {
+        left: 100%;
+        // margin-left: 15px;
+    }
+    .divider .vertical{
+        display: block;
+        border-left: 1px solid $divider-color;
+        height: 100%;
+        width: 1px;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+    }
+    // @media screen and(min-width: map-get($grid-breakpoints, lg)){
+    //     .divider>span:before {
+    //         width:0;
+    //         right: 0;
+    //     }
+
+    //     .divider>span:after {
+    //         width:0;
+    //         left: 0;
+    //     }
+    // }

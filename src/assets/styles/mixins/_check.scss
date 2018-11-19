@@ -1,0 +1,58 @@
+@mixin check($background-color, $check-color, $border-color, $checkbox-size) {
+    display: flex;
+    align-items: center;
+    input {
+      margin-right: 25px;
+        &+label {
+            position: relative;
+            cursor: pointer;
+            padding: 0;
+        } // Box.
+        &::before {
+            cursor: pointer;
+            content: '';
+            display: flex;
+            width: $checkbox-size;
+            height: $checkbox-size;
+            background: white;
+            border: 1px solid $border-color;
+            margin-top: calc(-#{$checkbox-size} / 2);
+        } // Box hover
+        &:hover::before {
+            background: lighten($background-color, 20%);
+        } // // Box focus
+        &:active::before {
+            background: darken($background-color, 20%);
+        } // // Box focus
+        // &:focus + label:before {
+        //   box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+        // }
+        // Box checked
+        &:checked::before {
+            background: $background-color;
+            border: 0;
+        } // Disabled state label.
+        &:disabled+label {
+            color: #b8b8b8;
+            cursor: auto;
+        } // Disabled box.
+        &:disabled::before {
+            box-shadow: none;
+            background: #ddd;
+        } // Checkmark. Could be replaced with an image
+        &:checked::after {
+            content: '';
+            /* background: white; */
+            border: 2px solid white;
+            border-top: 0;
+            border-left: 0;
+            width: 7px;
+            height: 14px;
+            /* box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white; */
+            transform: rotate(45deg);
+            display: flex;
+            margin-left: 12px;
+            margin-top: -23px;
+        }
+    }
+}
