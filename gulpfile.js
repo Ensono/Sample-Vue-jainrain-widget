@@ -16,9 +16,18 @@ const _ = require("lodash");
 const typescript = require("gulp-typescript");
 const tslint = require("gulp-tslint");
 
-//////////////////////////////////////////////////////////////////////////////// ASSETS
+// APP TASKS
+// ////////////////////////////////////////////////////////////////////////////////////
+gulp.task("app", ["js:min", "css:min"]);
 
-gulp.task("sass", function () {
+gulp.task("css:min", ["sass:compile"], function () {
+    return gulp.src("dist/miaa.css")
+        .pipe(cleanCSS())
+        .pipe(rename("miaa.min.css"))
+        .pipe(gulp.dest("dist/app"));
+});
+
+gulp.task("sass:compile", function () {
     return gulp.src("src/assets/styles/miaa.scss")
         .pipe(sass({
             includePaths: [
@@ -40,12 +49,10 @@ gulp.task("sass", function () {
         .on("error", function () {
             console.dir(arguments);
         })
-        .pipe(gulp.dest("dist"));
+        .pipe(gulp.dest("dist/app"));
 });
 
-//////////////////////////////////////////////////////////////////////////////// MINIFICATION
-
-gulp.task("minify:js", function () {
+gulp.task("js:min", ["js:bundle"], function () {
     return gulp.src("dist/miaa.js")
         .pipe(minify({
             minify: true,
@@ -58,33 +65,10 @@ gulp.task("minify:js", function () {
             }
         }))
         .pipe(rename("miaa.min.js"))
-        .pipe(gulp.dest("dist"));
+        .pipe(gulp.dest("dist/app"));
 });
 
-gulp.task("minify:css", function () {
-    return gulp.src("dist/miaa.css")
-        .pipe(cleanCSS())
-        .pipe(rename("miaa.min.css"))
-        .pipe(gulp.dest("dist"));
-});
-
-gulp.task("minify", ["minify:js", "minify:css"]);
-
-gulp.task("dist", function (cb) {
-    runSequence(
-        "clean",
-        ["sass", "bundle"],
-        "minify",
-        function () {
-            notifier.notify("build finished");
-            cb();
-        });
-});
-gulp.task("default", ["dist"]);
-
-gulp.task("build", ["typescript", "copy_html"]);
-
-gulp.task("bundle", ["build"], function (cb) {
+gulp.task("js:bundle", ["ts:compile-app", "html:copy"], function (cb) {
     var builder = new Builder();
     builder.config({
         packages: {
@@ -99,7 +83,7 @@ gulp.task("bundle", ["build"], function (cb) {
         .loadConfig("systemjs-config.js")
         .then(function () {
             return builder
-                .buildStatic("tmp", "dist/miaa.js", {
+                .buildStatic("tmp", "dist/app/miaa.js", {
                     runtime: false,
                     globalName: "miaa",
                     globalDeps: {
@@ -112,7 +96,7 @@ gulp.task("bundle", ["build"], function (cb) {
         })
         .then(function () {
             // strips whitespace from imported HTML files
-            gulp.src("dist/miaa.js")
+            gulp.src("dist/app/miaa.js")
                 .pipe(replace(/\\n */g, "", {
                     logs: {
                         enabled: false
@@ -130,11 +114,7 @@ gulp.task("bundle", ["build"], function (cb) {
         });
 });
 
-gulp.task("clean", function () {
-    return del(["tmp", "dist"]);
-});
-
-gulp.task("copy_html", function () {
+gulp.task("html:copy", function () {
     return gulp.src("src/app/**/*.html")
         .pipe(replace(/\n */g, "", {
             logs: {
@@ -148,7 +128,55 @@ gulp.task("copy_html", function () {
         .pipe(gulp.dest("./tmp"));
 });
 
-gulp.task("tslint", function () {
+gulp.task("ts:compile-app", ["ts:generate-screen-index", "ts:lint"], function () {
+    const tsProject = typescript.createProject("src/app/tsconfig.app.json");
+    return tsProject.src()
+        .pipe(tsProject())
+        .on("error", () => {
+            process.exit(1);
+        })
+        .js.pipe(gulp.dest("./tmp"));
+
+});
+
+gulp.task("ts:generate-screen-index", function () {
+    const screensDir = "src/app/screens/";
+    return fs.readdir(screensDir)
+        .then(contents => {
+            contents = contents.filter(c => fs.lstatSync(screensDir + c).isDirectory())
+                .map(dir => `import "./${dir}/${dir}";`);
+            contents.push("");
+            contents.unshift("// THIS FILE IS GENERATED. DO NOT EDIT DIRECTLY.");
+            return fs.writeFile(screensDir + "index.ts", contents.join("\n"))
+        });
+});
+
+// SERVER TASKS
+// ////////////////////////////////////////////////////////////////////////////////////
+gulp.task("server", ["ts:compile-server", "templates:copy"]);
+
+gulp.task("ts:compile-server", ["ts:lint"], function(){
+    const tsProject = typescript.createProject("src/server/tsconfig.server.json");
+    return tsProject.src()
+        .pipe(tsProject())
+        .on("error", () => {
+            process.exit(1);
+        })
+        .js.pipe(gulp.dest("./dist/server"));
+});
+
+gulp.task("templates:copy", function(){
+    return gulp.src("templates/**")
+        .pipe(gulp.dest("./dist/server/views"));
+});
+
+// DEFAULT TASKS
+// ////////////////////////////////////////////////////////////////////////////////////
+gulp.task("clean", function () {
+    return del(["tmp", "dist"]);
+});
+
+gulp.task("ts:lint", function () {
     return gulp.src("src/**/*.ts")
         .pipe(tslint({
             formatter: "verbose"
@@ -160,27 +188,12 @@ gulp.task("tslint", function () {
         });
 });
 
-gulp.task("typescript", ["generate_screens_index", "tslint"], function () {
-    const tsProject = typescript.createProject("tsconfig.json", {
-        module: "es6"
-    });
-    return tsProject.src()
-        .pipe(tsProject())
-        .on("error", () => {
-            process.exit(1);
-        })
-        .js.pipe(gulp.dest("./tmp"));
-
-});
-
-gulp.task("generate_screens_index", function () {
-    const screensDir = "src/app/screens/";
-    return fs.readdir(screensDir)
-        .then(contents => {
-            contents = contents.filter(c => fs.lstatSync(screensDir + c).isDirectory())
-                .map(dir => `import "./${dir}/${dir}";`);
-            contents.push("");
-            contents.unshift("// THIS FILE IS GENERATED. DO NOT EDIT DIRECTLY.");
-            return fs.writeFile(screensDir + "index.ts", contents.join("\n"))
+gulp.task("default", function (cb) {
+    runSequence(
+        "clean",
+        ["app", "server"],
+        function () {
+            notifier.notify("build finished");
+            cb();
         });
 });

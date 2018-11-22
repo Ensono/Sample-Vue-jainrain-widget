@@ -1,0 +1,7 @@
+{
+    "extends": "../../tsconfig",
+    "compilerOptions": {
+        "outDir": "../../tmp",
+        "module": "es6"
+    }
+}

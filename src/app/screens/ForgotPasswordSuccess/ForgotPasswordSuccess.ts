@@ -1,11 +1,12 @@
 import { Component, Vue } from "vue-property-decorator";
-import { Screen } from "../../components/index";
+import { NavLink, Screen } from "../../components/index";
 import { router } from "../../Router";
 import template from "./ForgotPasswordSuccess.html";
 
 @Component({
     components: {
         Screen,
+        NavLink
     },
     template,
 })

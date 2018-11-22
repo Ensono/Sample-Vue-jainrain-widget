@@ -12,7 +12,6 @@
         "noImplicitAny": false,
         "experimentalDecorators": true,
         "allowSyntheticDefaultImports": true,
-        "rootDir": "src/app",
         "moduleResolution": "node"
     },
     "exclude": [
